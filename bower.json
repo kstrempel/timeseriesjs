@@ -1,0 +1,29 @@
+{
+  "name": "timeseriesjs",
+  "version": "0.1.0",
+  "authors": [
+    "Kai Strempel <kstrempel@gmail.com>"
+  ],
+  "description": "highland.js experiment",
+  "main": "timeseries.js",
+  "keywords": [
+    "speed",
+    "stream",
+    "processing"
+  ],
+  "dependencies": {
+        "highland": "1.8.1",
+        "numeral": "1.5.3",
+        "async": "0.2.10"
+  },
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ]
+}
