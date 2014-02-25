@@ -41,10 +41,17 @@ function toGroups(){
             var value = x[1];
 
             if(grouping.time == time){
-                grouping.values.push(value);
+                if(value < grouping.min)
+                  grouping.min = value
+                else
+                  if(value > grouping.max)
+                    grouping.max = value;
+
+                grouping.count += 1;
+                grouping.sum += value;
             }else{
                 push(null,grouping);
-                grouping = { time : time, values : [value] };
+              grouping = { time : time, value : value, min : value, max : value, count : 1, sum : value };
             }
 
             next();
@@ -75,24 +82,12 @@ function main(){
     console.log("---------------------------------------------------");
 
     iter.each(function(data){
-        async.parallel({
-            sm : function(callback){
-                _(data.values).reduce(0, function(a,b){return a+b;}).toArray(function(xs){callback(null,xs)})
-            },
-            min : function(callback){
-                _(data.values).reduce1(function(a,b){return a<b ? a : b;}).toArray(function(xs){callback(null,xs)})
-            },
-            max : function(callback){
-                _(data.values).reduce1(function(a,b){return a>b ? a : b;}).toArray(function(xs){callback(null,xs)})
-            }
-        },function(err,results){
-            console.log(util.format("%s %s %s  %s  %s   %s",data.time,
-                                                            data.values[0],
-                                                            data.values.length,
-                                                            numeral(parseFloat(results.sm)).format("0[.]00000"),
-                                                            results.min,
-                                                            results.max));
-        });
+      console.log(util.format("%s %s %s  %s  %s   %s",data.time,
+                              data.value,
+                              data.count,
+                              data.sum,
+                              data.min,
+                              data.max));
     });
 }
 

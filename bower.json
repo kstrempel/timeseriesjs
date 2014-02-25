@@ -9,7 +9,8 @@
   "keywords": [
     "speed",
     "stream",
-    "processing"
+    "processing",
+    "experiment"
   ],
   "dependencies": {
         "highland": "1.8.1",
@@ -17,13 +18,5 @@
         "async": "0.2.10"
   },
   "license": "MIT",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "app/bower_components",
-    "test",
-    "tests"
-  ]
+  "private": true
 }
